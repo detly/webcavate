@@ -1,0 +1,5 @@
+flask
+flask-wtf
+alchy
+flask-alchy
+git+git://github.com/detly/dungeon#egg=dungeon
