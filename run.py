@@ -1,18 +1,18 @@
 # Copyright 2015 Jason Heeris, jason.heeris@gmail.com
 # 
-# This file is part of the dungeon excavator web interface ("Dumat").
+# This file is part of the dungeon excavator web interface ("webcavate").
 #
-# Dumat is free software: you can redistribute it and/or modify it under the
+# Webcavate is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
 # Foundation, either version 3 of the License, or (at your option) any later
 # version.
 #
-# Dumat is distributed in the hope that it will be useful, but WITHOUT ANY
+# Webcavate is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
 # A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License along with
-# Dumat. If not, see <http://www.gnu.org/licenses/>.
+# webcavate. If not, see <http://www.gnu.org/licenses/>.
 import argparse
 
 from flask import Flask, session
@@ -28,10 +28,10 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 # The database.
-db = Alchy(app, Model=DumatModel)
+db = Alchy(app, Model=WebcavateModel)
 
-# The dumat module.
-app.register_blueprint(dumat_app)
+# The webcavate module.
+app.register_blueprint(webcavate_app)
 
 # Let there be data.
 db.create_all()
