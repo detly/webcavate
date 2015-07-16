@@ -27,6 +27,8 @@ setup(
     install_requires = [
         'dumat',
         'flask',
+        'alchy',
+        'flask-alchy',
     ],
     
     entry_points = {
