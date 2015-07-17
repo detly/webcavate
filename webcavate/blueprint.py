@@ -39,7 +39,7 @@ webcavate_bp = Blueprint(
 @webcavate_bp.route("/")
 def root():
     """ Web interface landing page. """
-    return render_template('index.html', form=forms.FloorTextureForm())
+    return render_template('floor.html', form=forms.FloorTextureForm())
 
 
 @webcavate_bp.route("/error")

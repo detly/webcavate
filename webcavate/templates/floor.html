@@ -21,15 +21,6 @@ webcavate. If not, see <http://www.gnu.org/licenses/>.
 {% block page_title %}Dungeon excavator{% endblock %}
 
 {% block content %}
-<h1>Dungeon generator</h1>
-
-<p class="description">
-This is a tool for making quick maps for desktop or online role-playing game
-tools. Load up textures for the floor (eg. some nice tiles) and the walls (eg.
-stone), give a cutout of the floorplan, and this tool will make you a map with a
-bit of shading so your players can have a sense of depth.
-</p>
-
 <form action="./update" method="POST" enctype="multipart/form-data">
 
     {{ form.csrf_token }}
