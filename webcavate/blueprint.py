@@ -15,6 +15,8 @@
 # webcavate. If not, see <http://www.gnu.org/licenses/>.
 from flask import Blueprint, render_template, request, make_response, redirect, url_for, flash
 
+from webcavate import forms
+
 from dumat.excavate import render_room
 
 HELP_TEXT = """\
@@ -28,11 +30,10 @@ webcavate_bp = Blueprint(
     static_folder='static',
     static_url_path='/static/webcavate')
 
-
 @webcavate_bp.route("/")
 def root():
     """ Web interface landing page. """
-    return render_template('index.html')
+    return render_template('index.html', form=forms.FloorTextureForm())
 
 
 @webcavate_bp.route("/error")
