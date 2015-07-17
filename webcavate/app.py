@@ -16,15 +16,15 @@
 import argparse
 import uuid
 
-from flask import Flask, render_template, request, make_response, redirect, url_for, flash
+from flask import Blueprint, render_template, request, make_response, redirect, url_for, flash
 
-from dungeon.excavate import render_room
+from dumat.excavate import render_room
 
 HELP_TEXT = """\
 Web interface to the dungeon excavator."""
 
-app = Flask('dungeon.web')
-app.secret_key = str(uuid.uuid4())
+webcavate_bp = Blueprint('webcavate', __name__, url_prefix='', template_folder='templates')
+
 
 @app.route("/")
 def root():
@@ -93,24 +93,3 @@ def process():
         return redirect(url_for('error'))
     else:
         return redirect(url_for(node, _method='POST'), code=307)
-
-
-def main():
-    """ Parse arguments and get things going for the web interface """
-    parser = argparse.ArgumentParser(description=HELP_TEXT)
-    
-    parser.add_argument(
-        '-p', '--port',
-        help="Port to serve the interface on.",
-        type=int,
-        default=5050
-    )
-
-    parser.add_argument(
-        '-a', '--host',
-        help="Host to server the interface on.",
-    )
-
-    args = parser.parse_args()
-
-    app.run(port=args.port, host=args.host, debug=False)

@@ -29,6 +29,8 @@ setup(
         'flask',
         'alchy',
         'flask-alchy',
+        'flask-wtf',
+        'sqlalchemy',
     ],
     
     entry_points = {

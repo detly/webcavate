@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU General Public License along with
 # webcavate. If not, see <http://www.gnu.org/licenses/>.
 """
-Webcavate's state has a unique identifier, three input files, a flag that
-indicates whether it's processing, and a name for the session.
+Webcavate's state has a unique identifier, three input files, a status that
+indicates whether it's ready/processing/finished, and a name for the session.
 """
 from uuid import uuid4
 
@@ -23,6 +23,12 @@ from alchy import ModelBase, make_declarative_base
 from sqlalchemy import orm, Column, types, sql
 
 Model = make_declarative_base(Base=ModelBase)
+
+# Processing status:
+STATUS_SETUP = 'setup'
+STATUS_READY = 'ready'
+STATUS_PROCESSING = 'processing'
+STATUS_COMPLETE = 'complete'
 
 class WebcavateState(Model):
 
@@ -37,7 +43,12 @@ class WebcavateState(Model):
     map_path    = Column(types.UnicodeText())
     result_path = Column(types.UnicodeText())
 
-    processing = Column(types.Boolean(), nullable=False)
+    status = Column(
+        types.Enum(
+            STATUS_SETUP,
+            STATUS_READY,
+            STATUS_PROCESSING,
+            STATUS_COMPLETE))
 
     touched = Column(
         types.TIMESTAMP(timezone=True),
