@@ -30,6 +30,12 @@ webcavate_bp = Blueprint(
     static_folder='static',
     static_url_path='/static/webcavate')
 
+# Workflow is:
+#  1. Upload floor texture.
+#  2. Upload wall texture.
+#  3. Upload floorplan.
+#  4. Set tile size and output format and submit for processing.
+
 @webcavate_bp.route("/")
 def root():
     """ Web interface landing page. """
