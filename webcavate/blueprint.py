@@ -13,9 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # webcavate. If not, see <http://www.gnu.org/licenses/>.
-import argparse
-import uuid
-
 from flask import Blueprint, render_template, request, make_response, redirect, url_for, flash
 
 from dumat.excavate import render_room
@@ -23,16 +20,22 @@ from dumat.excavate import render_room
 HELP_TEXT = """\
 Web interface to the dungeon excavator."""
 
-webcavate_bp = Blueprint('webcavate', __name__, url_prefix='', template_folder='templates')
+webcavate_bp = Blueprint(
+    'webcavate',
+    __name__,
+    url_prefix='',
+    template_folder='templates',
+    static_folder='static',
+    static_url_path='/static/webcavate')
 
 
-@app.route("/")
+@webcavate_bp.route("/")
 def root():
     """ Web interface landing page. """
     return render_template('index.html')
 
 
-@app.route("/error")
+@webcavate_bp.route("/error")
 def error():
     """ Display errors. """
     return render_template('error.html')
@@ -62,22 +65,22 @@ def make_map(request, format):
     return response
 
 
-@app.route("/map.svg", methods=['POST'])
+@webcavate_bp.route("/map.svg", methods=['POST'])
 def map_svg():
     return make_map(request, format='svg')
 
 
-@app.route("/map.png", methods=['POST'])
+@webcavate_bp.route("/map.png", methods=['POST'])
 def map_png():
     return make_map(request, format='png')
 
 
-@app.route("/map.jpg", methods=['POST'])
+@webcavate_bp.route("/map.jpg", methods=['POST'])
 def map_jpg():
     return make_map(request, format='jpg')
 
 
-@app.route("/map", methods=['POST'])
+@webcavate_bp.route("/map", methods=['POST'])
 def process():
     """ Process submitted form data. """
     format = request.form['format']
