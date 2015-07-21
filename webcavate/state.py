@@ -36,11 +36,10 @@ class WebcavateState(Model):
 
     id      = Column(types.Integer()        , primary_key=True)
     key     = Column(types.BINARY(length=16), nullable=False, unique=True)
-    name    = Column(types.UnicodeText())
 
     floor_path  = Column(types.UnicodeText())
     wall_path   = Column(types.UnicodeText())
-    map_path    = Column(types.UnicodeText())
+    plan_path    = Column(types.UnicodeText())
     result_path = Column(types.UnicodeText())
 
     status = Column(
@@ -58,5 +57,4 @@ class WebcavateState(Model):
 
     def __init__(self):
         self.key = uuid4().bytes
-        self.one = False
-        self.two = False
+        self.status = STATUS_SETUP

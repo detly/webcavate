@@ -31,6 +31,22 @@ webcavate. If not, see <http://www.gnu.org/licenses/>.
     map with a bit of shading so your players can have a sense of depth.
     </p>
 
+    <p class="state-id">
+    Key: <code>{{ key_string }}</code>
+    </p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="errors">
+            {% for message in messages %}
+                <p>
+                <strong>Error:</strong> {{ message }}
+                </p>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
     {% block content %}
     {% endblock %}
 
