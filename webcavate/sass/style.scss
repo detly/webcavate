@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License along with
 webcavate. If not, see <http://www.gnu.org/licenses/>.
 */
 
+@import "compass/css3";
+
 @import url(http://fonts.googleapis.com/css?family=Lora);
 @import url(http://fonts.googleapis.com/css?family=Lato);
 
@@ -37,25 +39,37 @@ body {
     width: 50em;
 }
 
-body.error {
-    color: #300303;
-    background-color: #FFF6F6;
-}
+$error-text-color: #300303;
+$error-bg-color: #FFF6F6;
+$error-border-color: darken($error-bg-color, 5);
 
-p.submission {
-    text-align: center;
+.errors {
+    p {
+        @include border-radius(.4em);
+        @include box-shadow(rgba(#000, .06) 0 0 10px);
+        color: $error-text-color;
+        background-color: $error-bg-color;
+        border: 1px solid $error-border-color;
+        padding: 1ex 1em;
+    }
 }
 
 p {
-    margin-bottom: 8ex;
-}
+    &.description {
+        margin-bottom: 4ex;
+    }
 
-p.description {
-    margin-bottom: 4ex;
+    &.submission {
+        text-align: center;
+    }   
 }
 
 .description {
     font-style: italic;
+}
+
+form {
+    margin-top: 8ex;
 }
 
 input[type="number"] {
